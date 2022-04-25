@@ -1,0 +1,32 @@
+{
+  "name": "number_generator_nft",
+  "version": "1.0.2",
+  "description": "",
+  "main": "index.js",
+  "bin": "index.js",
+  "pkg": {
+    "assets": [
+      "assets/**/*",
+      "node_modules/**/*",
+      "src/**/*"
+    ]
+  },
+  "scripts": {
+    "start": "npm run build",
+    "build": "node index.js",
+    "clean:build": "rm -Rf build",
+    "clean:package": "rm package-lock.json",
+    "clean:node_modules": "rm -Rf node_modules",
+    "clean": "npm run clean:build && npm run clean:package && npm run clean:node_modules",
+    "rebuild": "npm run clean:build && npm start",
+    "reinstall": "npm run clean && npm install",
+    "updateBaseUri" : "node updateBaseUri.js"
+  },
+  "author": "Fransjo Leihitu (fransyozef)",
+  "license": "MIT",
+  "dependencies": {
+    "canvas": "^2.9.1",
+    "mime-types": "^2.1.35",
+    "sha1": "^1.1.1"
+  }
+}
