@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.4
+- Made `extraAttributes` optional in the configfile
+
 ## 1.0.3
 - Update package.json
 - Minor update

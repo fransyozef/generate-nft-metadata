@@ -42,7 +42,12 @@ const saveImage = async (index) => {
 const buildJson = (index) => {
     const dna = '';
     const _attributes = [];
-    const attributes = [..._attributes, ...PROJECT_CONFIG.extraAttributes];
+    let attributes = [];
+    if(PROJECT_CONFIG.extraAttributes) {
+        attributes = [..._attributes, ...PROJECT_CONFIG.extraAttributes];
+    } else {
+        attributes = _attributes;
+    }
     let baseUri = PROJECT_CONFIG.baseUri;
     const baseUriCheck = baseUri.charAt(baseUri.length-1);
     baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;

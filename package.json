@@ -1,6 +1,6 @@
 {
   "name": "generate-nft-metadata",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Simple tool to generate your NFT metadata json when you already have your own artwork",
   "repository": {
     "type": "git",
