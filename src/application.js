@@ -122,7 +122,6 @@ const getGeneratedJson = async () => {
 }
 
 const updateImageLocationInJson = async () => {
-    const total = generatedJsonList.length;
     generatedJsonList.forEach((file) => {
         const filename = `${JSON_PATH}${file}`;
         let rawdata = fs1.readFileSync(filename);

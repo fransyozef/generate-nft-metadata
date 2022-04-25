@@ -1,7 +1,11 @@
 {
   "name": "generate-nft-metadata",
-  "version": "1.0.2",
-  "description": "",
+  "version": "1.0.3",
+  "description": "Simple tool to generate your NFT metadata json when you already have your own artwork",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fransyozef/generate-nft-metadata"
+  },
   "main": "index.js",
   "bin": "index.js",
   "pkg": {
