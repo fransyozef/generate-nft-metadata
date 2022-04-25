@@ -2,7 +2,7 @@
 
 A simple tool to generate json metadata (and renaming the files) when you already have your own artwork for nft
 
-# NodeJS version
+## NodeJS version
 This tool was tested with nodejs version v14.19.1
 
 ## Install
