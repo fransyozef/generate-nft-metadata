@@ -14,9 +14,9 @@ const {
     PROJECT_CONFIG
 } = require(`${basePath}/src/config.js`);
 
-
 const metadataList = [];
 const filesInput = [];
+const generatedJsonList = [];
 
 const buildSetup = () => {
     if (fs1.existsSync(BUILD_PATH)) {
@@ -102,7 +102,6 @@ const generate = async () => {
     console.log('Done!');
 }
 
-const generatedJsonList = [];
 const getGeneratedJson = async () => {
     try {
         const filenames = await fs.readdir(JSON_PATH);
