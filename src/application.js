@@ -43,10 +43,13 @@ const buildJson = (index) => {
     const dna = '';
     const _attributes = [];
     const attributes = [..._attributes, ...PROJECT_CONFIG.extraAttributes];
+    let baseUri = PROJECT_CONFIG.baseUri;
+    const baseUriCheck = baseUri.charAt(baseUri.length-1);
+    baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;
     const tempData = {
         "name": `${PROJECT_CONFIG.namePrefix} #${index+1}`,
         "description": `${PROJECT_CONFIG.description}`,
-        "image": `${PROJECT_CONFIG.baseUri}${index+1}.png`,
+        "image": `${baseUri}${index+1}.png`,
         "dna": sha1(`${PROJECT_CONFIG.namePrefix} #${index+1} ${Date.now()}`),
         "edition": index+1,
         "date": Date.now(),
@@ -126,7 +129,10 @@ const updateImageLocationInJson = async () => {
         let data = JSON.parse(rawdata);
         const _imageSplit = data.image.split('/');
         const _filename = _imageSplit.pop();
-        data.image = `${PROJECT_CONFIG.baseUri}${_filename}`;
+        let baseUri = PROJECT_CONFIG.baseUri;
+        const baseUriCheck = baseUri.charAt(baseUri.length-1);
+        baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;        
+        data.image = `${baseUri}${_filename}`;
         saveJson(data);
     });
 }
