@@ -2,6 +2,13 @@
 
 A simple tool to generate json metadata (and renaming the files) when you already have your own artwork for nft
 
+
+## Support
+
+Like this tool? Want to support me? Please donate some crypto to me (so I can support my 4 wives and 11 kids and 3 dogs) 
+
+** ETH : 0xb0e73af58a9fdece76ba74a0cfb09265ae7e45d0
+
 ## NodeJS version
 This tool was tested with nodejs version v14.19.1
 
@@ -46,8 +53,3 @@ npm run updateBaseUri
 ```
 
 And you're all set
-
-
-## Support
-
-Like this tool? Want to support me? Please donate some ETH to me (so I can support my 4 wives and 11 kids and 3 dogs) : 0xb0e73af58a9fdece76ba74a0cfb09265ae7e45d0
