@@ -11,6 +11,10 @@ const PROJECT_CONFIG = {
         author : "Fransjo Leihitu"
     },
     extraAttributes : [],
+    fixedMedia : {
+        filename : 'test.png',
+        editions : 10
+    }
 }
 
 module.exports = {

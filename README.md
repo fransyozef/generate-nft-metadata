@@ -52,4 +52,21 @@ Next, in your terminal type
 npm run updateBaseUri
 ```
 
-And you're all set
+## Generate a collection with only 1 media
+
+If you want to generate metadata for your collection witht only 1 media (png,mp4) , you can use the command
+
+```sh
+npm run generate:fixedMedia
+```
+
+In the config file you can set the filename and the editions to generate :
+
+```
+    fixedMedia : {
+        filename : 'test.png',
+        editions : 10
+    }
+```
+
+This will generate 10 metadata with all pointing to the same filename.

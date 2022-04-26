@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.5
+- Added generate with 1 fixed media
+
 ## 1.0.4
 - Made `extraAttributes` optional in the configfile
 

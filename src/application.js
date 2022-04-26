@@ -39,7 +39,7 @@ const saveImage = async (index) => {
     }
 }
 
-const buildJson = (index) => {
+const buildJson = (index , _media) => {
     const dna = '';
     const _attributes = [];
     let attributes = [];
@@ -51,10 +51,11 @@ const buildJson = (index) => {
     let baseUri = PROJECT_CONFIG.baseUri;
     const baseUriCheck = baseUri.charAt(baseUri.length-1);
     baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;
+    const media = _media ? `${baseUri}${_media}` : `${baseUri}${index+1}.png`;
     const tempData = {
         "name": `${PROJECT_CONFIG.namePrefix} #${index+1}`,
         "description": `${PROJECT_CONFIG.description}`,
-        "image": `${baseUri}${index+1}.png`,
+        "image": `${media}`,
         "dna": sha1(`${PROJECT_CONFIG.namePrefix} #${index+1} ${Date.now()}`),
         "edition": index+1,
         "date": Date.now(),
@@ -146,5 +147,18 @@ const updateBaseUri = async () => {
     updateImageLocationInJson();
 }
 
+const generateFixedMedia = () => {
+    buildSetup();
+    // await getSourceImages();
+    const totalMetadata = PROJECT_CONFIG.fixedMedia.editions;
+    console.log(`Generating ${totalMetadata} metadata with fixed media : ${PROJECT_CONFIG.fixedMedia.filename}`);
+    for (let i = 0; i < totalMetadata; i++) {
+        // await saveImage(i);
+        buildJson(i,PROJECT_CONFIG.fixedMedia.filename);
+        // saveAllJson();
+    }
+    console.log('Done!');    
+}
 
-module.exports = { generate, saveImage, updateBaseUri };
+
+module.exports = { generate, saveImage, updateBaseUri,generateFixedMedia };
