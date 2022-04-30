@@ -31,7 +31,8 @@ Let's say you have some images, but don't have any metadata json files.
 
 Put your images in the `/assets/` folder.
 
-Next you can setup the default metadata that will be used in your metadata json.
+Next you can setup the default metadata that will be used in your metadata json. 
+You can find this in the `config.js` file.
 
 ```
     namePrefix: 'Your Collection',
