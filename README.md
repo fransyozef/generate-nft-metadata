@@ -49,8 +49,8 @@ You can configure the attributes and extra metadata in the `config.js` file :
     },
     extraAttributes : [
         {
-        "trait_type": "color",
-        "value": "black"
+            "trait_type": "color",
+            "value": "black"
         }
     ],
 ```
