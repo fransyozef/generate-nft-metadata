@@ -114,6 +114,37 @@ npm run generate:fromMetadata
 
 Put the `_metadata.json` in the `/assets/` folder. The json files will be exported in the `/build/json/` folder.
 
+So for example :
+
+```
+[
+    {
+        "name": "Test #1",
+        "description": "My description",
+        "image": "ipfs://NewUriToReplace/1.png",
+        "dna": "53253828be96096cb1a321e5a3bce241db6c067f",
+        "edition": 1,
+        "date": 1651315338049,
+        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
+        "attributes": [],
+        "compiler": "HashLips Art Engine , forked by fransyozef"
+    },
+    {
+        "name": "Test #2",
+        "description": "My description",
+        "image": "ipfs://NewUriToReplace/2.png",
+        "dna": "a9ab967c5e138cfb743a0d477aa4f827672eac99",
+        "edition": 2,
+        "date": 1651315339045,
+        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
+        "attributes": [],
+        "compiler": "HashLips Art Engine , forked by fransyozef"
+    }
+]
+``
+
+will generate 2 json metadata files in `/build/json/`.
+
 
 ## Tool #4 - Update the base uri
 
