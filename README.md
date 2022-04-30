@@ -141,7 +141,7 @@ So for example :
         "compiler": "HashLips Art Engine , forked by fransyozef"
     }
 ]
-``
+```
 
 will generate 2 json metadata files in `/build/json/`.
 
