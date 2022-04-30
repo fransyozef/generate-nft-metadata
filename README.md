@@ -31,6 +31,15 @@ Let's say you have some images, but don't have any metadata json file.
 
 Put your images in the `/assets/` folder.
 
+You can configure the attributes and extra metadata in the `config.js` file :
+
+```
+    extraMetadata : {
+        author : "Fransjo Leihitu"
+    },
+    extraAttributes : [],
+```
+
 then run the command 
 
 ```sh

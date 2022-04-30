@@ -7,13 +7,18 @@ const PROJECT_CONFIG = {
     namePrefix: 'Your Collection',
     description: 'Remember to replace this description',
     baseUri: "ipfs://NewUriToReplace/",
-    extraMetadata : {
-        author : "Fransjo Leihitu"
+    extraMetadata: {
+        author: "Fransjo Leihitu"
     },
-    extraAttributes : [],
-    fixedMedia : {
-        filename : 'test.png',
-        editions : 10
+    extraAttributes: [
+        {
+            "trait_type": "color",
+            "value": "black"
+        }
+    ],
+    fixedMedia: {
+        filename: 'test.png',
+        editions: 10
     }
 }
 

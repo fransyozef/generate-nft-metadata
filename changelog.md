@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.1
+- Bug fixing
+- update Readme
+- Added dummy attributes
+
 ## 1.1.0
 - Renamed files, update README.md
 
