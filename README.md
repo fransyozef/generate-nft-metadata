@@ -27,9 +27,18 @@ The config file is located in `/src/config.js`
 
 ## Tool #1 - Generate json file from images
 
-Let's say you have some images, but don't have any metadata json file.
+Let's say you have some images, but don't have any metadata json files.
 
 Put your images in the `/assets/` folder.
+
+Next you can setup the default metadata that will be used in your metadata json.
+
+```
+    namePrefix: 'Your Collection',
+    description: 'Remember to replace this description',
+    baseUri: "ipfs://NewUriToReplace/",
+```
+
 
 You can configure the attributes and extra metadata in the `config.js` file :
 
@@ -37,7 +46,12 @@ You can configure the attributes and extra metadata in the `config.js` file :
     extraMetadata : {
         author : "Fransjo Leihitu"
     },
-    extraAttributes : [],
+    extraAttributes : [
+        {
+        "trait_type": "color",
+        "value": "black"
+        }
+    ],
 ```
 
 then run the command 
@@ -47,6 +61,27 @@ npm run generate:fromImages
 ```
 
 this will generate the json files in `/build/json` and rename & copy your source images files to `/build/images/` folder.
+
+So it will look something like this
+
+```
+{
+  "name": "Your Collection #1",
+  "description": "Remember to replace this description",
+  "image": "ipfs://NewUriToReplace/1.png",
+  "dna": "55d323fe03e5f28360dbf1b75f1a87ef09d0b6a2",
+  "edition": 1,
+  "date": 1651319815313,
+  "compiler": "Metadata generator NFT by fransyozef",
+  "attributes": [
+    {
+      "trait_type": "color",
+      "value": "black"
+    }
+  ],
+  "author": "Fransjo Leihitu"
+}
+````
 
 
 ## Tool #2 - Generate a collection with only 1 media
