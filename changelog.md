@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.0.6
+- Added generate json files from _metadata.json
+
 ## 1.0.5
 - Added generate with 1 fixed media
 

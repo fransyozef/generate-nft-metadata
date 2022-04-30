@@ -1,6 +1,6 @@
 # generate-nft-metadata
 
-A simple tool to generate json metadata (and renaming the files) when you already have your own artwork for nft
+Simple tools to generate metadata.
 
 
 ## Support
@@ -72,3 +72,14 @@ In the config file you can set the filename and the editions to generate :
 ```
 
 This will generate 10 metadata with all pointing to the same filename.
+
+
+## Generate json files from the _metadata.json
+
+If you want to generate json files that are stored in the _metadata.json, use the command
+
+```sh
+npm run generate:fromMetadata
+```
+
+Put the `_metadata.json` in the `/assets/` folder. The json files will be exported in the `/build/json/` folder.

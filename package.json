@@ -1,6 +1,6 @@
 {
   "name": "generate-nft-metadata",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Simple tool to generate your NFT metadata",
   "repository": {
     "type": "git",
@@ -25,7 +25,8 @@
     "rebuild": "npm run clean:build && npm start",
     "reinstall": "npm run clean && npm install",
     "updateBaseUri" : "node utils/updateBaseUri.js",
-    "generate:fixedMedia" : "node utils/generateFixedMedia.js"
+    "generate:fixedMedia" : "node utils/generateFixedMedia.js",
+    "generate:fromMetadata" : "npm run clean:build && node utils/generateFromMetadataJson.js"
   },
   "author": "Fransjo Leihitu (fransyozef)",
   "license": "MIT",

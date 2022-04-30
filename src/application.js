@@ -160,5 +160,19 @@ const generateFixedMedia = () => {
     console.log('Done!');    
 }
 
+const generateFromMetadataJson = () => {
+    buildSetup();
+    const metadataJson = `${ASSETS_PATH}_metadata.json`;
+    console.log(`Reading ${metadataJson}`);
+    let rawdata = fs1.readFileSync(metadataJson);
+    let data = JSON.parse(rawdata);    
+    if(data && data.length > 0) {
+        data.forEach((element) => {
+            // console.log(element);
+            console.log(`Exporting to ${element.edition}.json`);
+            saveJson(element);
+        });
+    }
+}
 
-module.exports = { generate, saveImage, updateBaseUri,generateFixedMedia };
+module.exports = { generate, saveImage, updateBaseUri,generateFixedMedia,generateFromMetadataJson };
