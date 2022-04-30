@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.0
+- Renamed files, update README.md
+
 ## 1.0.6
 - Added generate json files from _metadata.json
 
