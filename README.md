@@ -10,6 +10,19 @@ Like this tool? Want to support me? Please donate some crypto to me (so I can su
 
 ** Polygon : 0x70a0D3c75853f706B17970727A25113a63bCAf1f
 
+## Download 
+
+You can download the latest release at https://github.com/fransyozef/generate-nft-metadata/releases
+
+or you can clone this on your machine :
+
+```sh
+git clone https://github.com/fransyozef/generate-nft-metadata.git
+```
+
+## GitBash terminal for Windows
+Some commands need some unix commands. The Windows terminal don't support them. In order to make it work you could use Git Bash as your terminal. Download it at https://gitforwindows.org/
+
 ## NodeJS version
 This tool was tested with nodejs version v14.19.1. You need to download and install it from https://nodejs.org/en/download/.
 
