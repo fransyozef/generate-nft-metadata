@@ -1,7 +1,6 @@
 # generate-nft-metadata
 
-Simple toolset to generate metadata
-
+Simple toolset to generate metadata.
 
 ## Support
 Like this tool? Want to support me? Please donate some crypto to me (so I can support my 4 wives and 11 kids and 3 dogs) 
@@ -9,6 +8,24 @@ Like this tool? Want to support me? Please donate some crypto to me (so I can su
 ** ETH : 0xb0e73af58a9fdece76ba74a0cfb09265ae7e45d0
 
 ** Polygon : 0x70a0D3c75853f706B17970727A25113a63bCAf1f
+
+
+## Index
+
+- Setup
+    - [Download](#download)
+    - [Window users](#windows-users--use-gitbash-terminal-for-windows)
+    - [NodeJS](#nodejs-version)
+    - [Install](#install)
+- The tools
+    - [Config.js](#config-file)
+    - [Tool 1 : Generate json file from images](#tool-1---generate-json-file-from-images)
+    - [Tool 2 : Generate a collection with only 1 media](#tool-2---generate-a-collection-with-only-1-media)
+    - [Tool 3 : Generate json files from the _metadata.json](#tool-3---generate-json-files-from-the-_metadatajson)
+    - [Tool 4 : Update the base uri](#tool-4---update-the-base-uri)
+    - [Tool 5 : Reverse generate images from _metadata.json and layers](#tool-5---reverse-generate-images-from-_metadatajson-and-layers)
+
+
 
 ## Download 
 
