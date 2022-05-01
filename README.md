@@ -10,8 +10,9 @@ Like this tool? Want to support me? Please donate some crypto to me (so I can su
 ** Polygon : 0x70a0D3c75853f706B17970727A25113a63bCAf1f
 
 ## Art Engine
-I have forked the HashLips Art Engine at : https://github.com/fransyozef/hashlips_art_engine
-Made some extra features on it.
+I have forked the HashLips Art Engine and made some extra features on it
+
+https://github.com/fransyozef/hashlips_art_engine
 
 
 ## Index
