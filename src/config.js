@@ -19,6 +19,11 @@ const PROJECT_CONFIG = {
     fixedMedia: {
         filename: 'test.png',
         editions: 10
+    },
+    format: {
+        width: 512,
+        height: 512,
+        smoothing: false,
     }
 }
 

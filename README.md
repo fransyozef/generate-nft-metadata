@@ -179,3 +179,15 @@ Next, in your terminal type
 ```sh
 npm run updateBaseUri
 ```
+
+## Tool #5 - Reverse generate images from _metadata.json and layers
+
+This tool will generate your images by crossreferencing the `_metadata.json` and the source image in `/assets/layers/`.
+
+The images will be outputtted in `/build/images/`.
+
+The command to run this tool :
+
+```sh
+npm run generate:fromMetadataJsonAndLayers
+```

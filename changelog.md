@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.2
+- Added reverse image generation from _metadata.json and layers images
+
 ## 1.1.1
 - Bug fixing
 - update Readme

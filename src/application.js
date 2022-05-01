@@ -4,11 +4,13 @@ const fs1 = require("fs");
 const { promises: fs } = require("fs");
 const mime = require('mime-types')
 const sha1 = require(`${basePath}/node_modules/sha1`);
+const { createCanvas, Image } = require(`${basePath}/node_modules/canvas`);
 const {
     ASSETS_PATH,
     BUILD_PATH,
     IMAGES_PATH,
-    JSON_PATH
+    JSON_PATH,
+    LAYERS_PATH
 } = require(`${basePath}/src/constants.js`);
 const {
     PROJECT_CONFIG
@@ -17,6 +19,13 @@ const {
 const metadataList = [];
 const filesInput = [];
 const generatedJsonList = [];
+
+let canvas, ctx;
+const initCanvas = () => {
+    canvas = createCanvas(PROJECT_CONFIG.format.width, PROJECT_CONFIG.format.height);
+    ctx = canvas.getContext("2d");
+    imageSmoothingEnabled = PROJECT_CONFIG.format.smoothing;
+}
 
 const buildSetup = () => {
     if (fs1.existsSync(BUILD_PATH)) {
@@ -29,9 +38,9 @@ const buildSetup = () => {
 
 const saveImage = async (index) => {
     const sourceFile = `${ASSETS_PATH}${filesInput[index]}`;
-    const destFile = `${IMAGES_PATH}${index+1}.png`;
-    try { 
-        await fs.copyFile(sourceFile , destFile);
+    const destFile = `${IMAGES_PATH}${index + 1}.png`;
+    try {
+        await fs.copyFile(sourceFile, destFile);
         const result = await fs.readFile(destFile);
         // if(result) console.log(`[${index}] copied ${sourceFile} to ${destFile}`)
     } catch (e) {
@@ -39,25 +48,25 @@ const saveImage = async (index) => {
     }
 }
 
-const buildJson = (index , _media) => {
+const buildJson = (index, _media) => {
     const dna = '';
     const _attributes = [];
     let attributes = [];
-    if(PROJECT_CONFIG.extraAttributes) {
+    if (PROJECT_CONFIG.extraAttributes) {
         attributes = [..._attributes, ...PROJECT_CONFIG.extraAttributes];
     } else {
         attributes = _attributes;
     }
     let baseUri = PROJECT_CONFIG.baseUri;
-    const baseUriCheck = baseUri.charAt(baseUri.length-1);
+    const baseUriCheck = baseUri.charAt(baseUri.length - 1);
     baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;
-    const media = _media ? `${baseUri}${_media}` : `${baseUri}${index+1}.png`;
+    const media = _media ? `${baseUri}${_media}` : `${baseUri}${index + 1}.png`;
     const tempData = {
-        "name": `${PROJECT_CONFIG.namePrefix} #${index+1}`,
+        "name": `${PROJECT_CONFIG.namePrefix} #${index + 1}`,
         "description": `${PROJECT_CONFIG.description}`,
         "image": `${media}`,
-        "dna": sha1(`${PROJECT_CONFIG.namePrefix} #${index+1} ${Date.now()}`),
-        "edition": index+1,
+        "dna": sha1(`${PROJECT_CONFIG.namePrefix} #${index + 1} ${Date.now()}`),
+        "edition": index + 1,
         "date": Date.now(),
         "compiler": "Metadata generator NFT by fransyozef",
         "attributes": attributes
@@ -88,7 +97,7 @@ const getSourceImages = async () => {
         filenames.forEach(function (file) {
             const _file = `${ASSETS_PATH}${file}`;
             const _mime = mime.lookup(_file);
-            if(_mime === 'image/png') {
+            if (_mime === 'image/png') {
                 filesInput.push(file);
                 console.log(`Found asset: ${file}`);
             }
@@ -117,7 +126,7 @@ const getGeneratedJson = async () => {
         filenames.forEach(function (file) {
             const _file = `${ASSETS_PATH}${file}`;
             const _mime = mime.lookup(_file);
-            if(_mime === 'application/json' && file !== '_metadata.json') {
+            if (_mime === 'application/json' && file !== '_metadata.json') {
                 generatedJsonList.push(file);
                 console.log(`Found json: ${file}`);
             }
@@ -135,8 +144,8 @@ const updateImageLocationInJson = async () => {
         const _imageSplit = data.image.split('/');
         const _filename = _imageSplit.pop();
         let baseUri = PROJECT_CONFIG.baseUri;
-        const baseUriCheck = baseUri.charAt(baseUri.length-1);
-        baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;        
+        const baseUriCheck = baseUri.charAt(baseUri.length - 1);
+        baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;
         data.image = `${baseUri}${_filename}`;
         saveJson(data);
     });
@@ -154,10 +163,10 @@ const generateFixedMedia = () => {
     console.log(`Generating ${totalMetadata} metadata with fixed media : ${PROJECT_CONFIG.fixedMedia.filename}`);
     for (let i = 0; i < totalMetadata; i++) {
         // await saveImage(i);
-        buildJson(i,PROJECT_CONFIG.fixedMedia.filename);
+        buildJson(i, PROJECT_CONFIG.fixedMedia.filename);
         // saveAllJson();
     }
-    console.log('Done!');    
+    console.log('Done!');
 }
 
 const generateFromMetadataJson = () => {
@@ -165,8 +174,8 @@ const generateFromMetadataJson = () => {
     const metadataJson = `${ASSETS_PATH}_metadata.json`;
     console.log(`Reading ${metadataJson}`);
     let rawdata = fs1.readFileSync(metadataJson);
-    let data = JSON.parse(rawdata);    
-    if(data && data.length > 0) {
+    let data = JSON.parse(rawdata);
+    if (data && data.length > 0) {
         data.forEach((element) => {
             // console.log(element);
             console.log(`Exporting to ${element.edition}.json`);
@@ -175,4 +184,69 @@ const generateFromMetadataJson = () => {
     }
 }
 
-module.exports = { generate, saveImage, updateBaseUri,generateFixedMedia,generateFromMetadataJson };
+const generateFromMetadataJsonAndLayers = async () => {
+    buildSetup();
+    initCanvas();
+    const metadataJson = `${ASSETS_PATH}_metadata.json`;
+    console.log(`Reading ${metadataJson}`);
+    console.log('');
+    let rawdata = fs1.readFileSync(metadataJson);
+    let data = JSON.parse(rawdata);
+    let fileStack = [];
+    if (data && data.length > 0) {
+        for (x = 0; x < data.length; x++) {
+            const element = data[x];
+            if (element?.attributes) {
+                fileStack = [];
+                for (i = 0; i < element.attributes.length; i++) {
+                    const attribute = element.attributes[i];
+                    let layer = `${LAYERS_PATH}${attribute.trait_type}/`;
+                    let filename = attribute.value;
+                    const filenames = await fs.readdir(layer);
+                    filenames.forEach(function (file) {
+                        let _file = file.replace('.png', '');
+                        let fileParts = _file.split('#');
+                        if (fileParts[0] === filename) {
+                            fileStack.push(`${layer}${file}`);
+                        }
+                    });
+                }
+                if (fileStack.length > 0) {
+                    for (i = 0; i < fileStack.length; i++) {
+                        const image = fileStack[i];
+                        const img = new Image();
+                        img.onload = () => ctx.drawImage(img, 0, 0);
+                        img.onerror = err => { throw err }
+                        img.src = image;
+                    }
+                    const filename = `${IMAGES_PATH}${element.edition}.png`;
+                    fs1.writeFileSync(
+                        filename,
+                        canvas.toBuffer("image/png")
+                    );
+                    console.log(`png saved at ${filename}`);
+                    console.log(`metadata saved`);
+                    console.log(` `);
+                    saveJson(element);
+                }
+
+                let filename = `${JSON_PATH}_metadata.json`;
+                fs1.writeFileSync(
+                    filename,
+                    JSON.stringify(data, null, 2)
+                );
+
+                initCanvas();
+            }
+        }
+    }
+}
+
+module.exports = {
+    generate,
+    saveImage,
+    updateBaseUri,
+    generateFixedMedia,
+    generateFromMetadataJson,
+    generateFromMetadataJsonAndLayers
+};

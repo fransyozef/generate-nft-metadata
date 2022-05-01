@@ -7,7 +7,32 @@
         "edition": 1,
         "date": 1651315338049,
         "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
+        "attributes": [
+            {
+                "trait_type": "Eyeball",
+                "value": "White"
+            },
+            {
+                "trait_type": "Eye color",
+                "value": "Pink"
+            },
+            {
+                "trait_type": "Iris",
+                "value": "Small"
+            },
+            {
+                "trait_type": "Shine",
+                "value": "Shapes"
+            },
+            {
+                "trait_type": "Bottom lid",
+                "value": "Middle"
+            },
+            {
+                "trait_type": "Top lid",
+                "value": "Middle"
+            }
+        ],
         "compiler": "HashLips Art Engine , forked by fransyozef"
     },
     {
@@ -18,95 +43,32 @@
         "edition": 2,
         "date": 1651315339045,
         "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #3",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/3.png",
-        "dna": "ac62780b2d06464827861afad5db7ed6e19ff782",
-        "edition": 3,
-        "date": 1651315340056,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #4",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/4.png",
-        "dna": "4c1f7cad1853a3c8597a4c4e615de54f2c986e03",
-        "edition": 4,
-        "date": 1651315340985,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #5",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/5.png",
-        "dna": "0810dda5a419ec5c0c667627ebccbe7311019b61",
-        "edition": 5,
-        "date": 1651315342074,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #6",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/6.png",
-        "dna": "790120e39fa6a0f641b9ad87d196538d12aae6fd",
-        "edition": 6,
-        "date": 1651315343169,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #7",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/7.png",
-        "dna": "693cae8c27087f9a848e1b133a2e69234ab6e942",
-        "edition": 7,
-        "date": 1651315343993,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #8",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/8.png",
-        "dna": "71f81d487a760e4a41e9111c5191a578e935188c",
-        "edition": 8,
-        "date": 1651315344906,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #9",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/9.png",
-        "dna": "bde3dae20417554612f1eaa6dae41ccec7a9b0b4",
-        "edition": 9,
-        "date": 1651315346004,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
-        "compiler": "HashLips Art Engine , forked by fransyozef"
-    },
-    {
-        "name": "Test #10",
-        "description": "My description",
-        "image": "ipfs://NewUriToReplace/10.png",
-        "dna": "4f505b68845a8ec97c9b62366295acccdd4fdcc5",
-        "edition": 10,
-        "date": 1651315347006,
-        "author": "Fransjo Leihitu aka The Hangry Coder aka XperimentalConcept aka fransYOzef aka ThaLyric",
-        "attributes": [],
+        "attributes": [
+            {
+                "trait_type": "Eyeball",
+                "value": "White"
+            },
+            {
+                "trait_type": "Eye color",
+                "value": "Red"
+            },
+            {
+                "trait_type": "Iris",
+                "value": "Large"
+            },
+            {
+                "trait_type": "Shine",
+                "value": "Shapes"
+            },
+            {
+                "trait_type": "Bottom lid",
+                "value": "Low"
+            },
+            {
+                "trait_type": "Top lid",
+                "value": "High"
+            }
+        ],
         "compiler": "HashLips Art Engine , forked by fransyozef"
     }
 ]
