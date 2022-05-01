@@ -20,7 +20,7 @@ or you can clone this on your machine :
 git clone https://github.com/fransyozef/generate-nft-metadata.git
 ```
 
-## Windows users !!!! GitBash terminal for Windows
+## Windows users !!!! Use GitBash terminal for Windows
 Some commands need some unix commands. The Windows terminal don't support them. In order to make it work you could use Git Bash as your terminal. Download it at https://gitforwindows.org/.
 
 Without this, the scripts won't work!
