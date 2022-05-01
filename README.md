@@ -11,7 +11,7 @@ Like this tool? Want to support me? Please donate some crypto to me (so I can su
 ** Polygon : 0x70a0D3c75853f706B17970727A25113a63bCAf1f
 
 ## NodeJS version
-This tool was tested with nodejs version v14.19.1
+This tool was tested with nodejs version v14.19.1. You need to download and install it from https://nodejs.org/en/download/.
 
 ## Install
 Open your terminal and navigate to the project root folder and type :
@@ -22,7 +22,7 @@ npm install
 
 ## Config file
 
-The config file is located in `/src/config.js`
+The config file is located in `/src/config.js`. This is where you configure the tools. 
 
 
 ## Tool #1 - Generate json file from images
