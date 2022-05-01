@@ -188,6 +188,16 @@ This tool will generate your images by crossreferencing the `_metadata.json` and
 
 The images will be outputtted in `/build/images/`.
 
+First set the correct width and height output in the `config.js`
+
+```
+    format: {
+        width: 512,
+        height: 512,
+        smoothing: false,
+    }
+```
+
 The command to run this tool :
 
 ```sh
