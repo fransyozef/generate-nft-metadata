@@ -117,6 +117,14 @@ In the config file you can set the filename and the editions to generate :
 
 This will generate 10 metadata with all pointing to the same filename.
 
+Don't forget to update the following in your `config.js`
+
+```
+    namePrefix: 'Your Collection',
+    description: 'Remember to replace this description',
+    baseUri: "ipfs://NewUriToReplace/",
+```
+
 
 ## Tool #3 - Generate json files from the _metadata.json
 
