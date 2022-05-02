@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.1.3
+- Fixed typo for `generate:fixedMedia`
+
 ## 1.1.2
 - Added reverse image generation from _metadata.json and layers images
 
