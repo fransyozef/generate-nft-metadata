@@ -149,7 +149,7 @@ Don't forget to update the following in your `config.js`
     baseUri: "ipfs://NewUriToReplace/",
 ```
 
-This will generate 10 metadata with all pointing to the same filename.
+This will generate 10 metadata with all pointing to the same filename in the folder `/build/json/`
 
 For example:
 
