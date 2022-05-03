@@ -275,13 +275,17 @@ The HashLip generator creates metadata for example
 }
 ```
 
-You don't actually need all the keys.
-Run this command in your terminal to delete:
+You don't actually need all the keys. Tool 6 will delete these :
 
 - dna
 - edition
 - compiler
 - author
+- date
+
+Put all your metadata in the folder `/build/json/` .
+
+Then run the command in your terminal
 
 ```sh
 npm run cleanMetadata
