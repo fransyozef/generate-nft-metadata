@@ -141,14 +141,35 @@ In the config file you can set the filename and the editions to generate :
     }
 ```
 
-This will generate 10 metadata with all pointing to the same filename.
-
 Don't forget to update the following in your `config.js`
 
 ```
     namePrefix: 'Your Collection',
     description: 'Remember to replace this description',
     baseUri: "ipfs://NewUriToReplace/",
+```
+
+This will generate 10 metadata with all pointing to the same filename.
+
+For example:
+
+```
+{
+  "name": "Your Collection #1",
+  "description": "Remember to replace this description",
+  "image": "ipfs://NewUriToReplace/test.png",
+  "dna": "f24ec0656aa4e8706480d46b7655fd07e9d293fe",
+  "edition": 1,
+  "date": 1651600070254,
+  "compiler": "Metadata generator NFT by fransyozef",
+  "attributes": [
+    {
+      "trait_type": "color",
+      "value": "black"
+    }
+  ],
+  "author": "Fransjo Leihitu"
+}
 ```
 
 
