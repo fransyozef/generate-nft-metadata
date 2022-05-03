@@ -45,7 +45,9 @@ git clone https://github.com/fransyozef/generate-nft-metadata.git
 ```
 
 ## Windows users !!!! Use GitBash terminal for Windows
-Some commands need some unix commands. The Windows terminal don't support them. In order to make it work you could use Git Bash as your terminal. Download it at https://gitforwindows.org/.
+Some commands need some unix commands. The Windows terminal don't support them. In order to make it work you could use Git Bash as your terminal (as a replacement of PowerShell). Download it at https://gitforwindows.org/.
+
+So use Git Bash instead of Windows PowerShell!
 
 Without this, the scripts won't work!
 
@@ -247,4 +249,39 @@ The command to run this tool :
 
 ```sh
 npm run generate:fromMetadataJsonAndLayers
+```
+
+## Tool #6 - Cleanup metadata
+
+The HashLip generator creates metadata for example
+
+```json
+{
+  "name": "Your Collection #1",
+  "description": "Remember to replace this description",
+  "image": "ipfs://NewUriToReplace/1.png",
+  "dna": "ffca094d38469d558fd8a442b847802d3ef3b42e",
+  "edition": 1,
+  "date": 1651601900137,
+  "compiler": "Metadata generator NFT by fransyozef",
+  "attributes": [
+    {
+      "trait_type": "color",
+      "value": "black"
+    }
+  ],
+  "author": "Fransjo Leihitu"
+}
+```
+
+You don't actually need all the keys.
+Run this command in your terminal to delete:
+
+- dna
+- edition
+- compiler
+- author
+
+```sh
+npm run cleanMetadata
 ```
