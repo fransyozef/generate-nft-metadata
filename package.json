@@ -18,7 +18,7 @@
   "scripts": {
     "start": "npm run build",
     "build": "node index.js",
-    "clean:build": "rm -Rf build",
+    "clean:build": "rmdir build",
     "clean:package": "rm package-lock.json",
     "clean:node_modules": "rm -Rf node_modules",
     "clean": "npm run clean:build && npm run clean:package && npm run clean:node_modules",
