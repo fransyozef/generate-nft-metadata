@@ -36,8 +36,8 @@ const buildSetup = () => {
     fs1.mkdirSync(IMAGES_PATH);
 };
 
-const saveImage = async (index) => {
-    const sourceFile = `${ASSETS_PATH}${filesInput[index]}`;
+const saveImage = async (index,_prePath) => {
+    const sourceFile = `${ASSETS_PATH}${_prePath}${filesInput[index]}`;
     const destFile = `${IMAGES_PATH}${index + 1}.png`;
     try {
         await fs.copyFile(sourceFile, destFile);
@@ -92,10 +92,11 @@ const saveAllJson = () => {
     );
 }
 const getSourceImages = async () => {
+    const tool1Path = `${ASSETS_PATH}tool1/`;
     try {
-        const filenames = await fs.readdir(ASSETS_PATH);
+        const filenames = await fs.readdir(tool1Path);
         filenames.forEach(function (file) {
-            const _file = `${ASSETS_PATH}${file}`;
+            const _file = `${tool1Path}${file}`;
             const _mime = mime.lookup(_file);
             if (_mime === 'image/png') {
                 filesInput.push(file);
@@ -113,18 +114,18 @@ const generate = async () => {
     const totalImages = filesInput.length;
     console.log(`Generating ${totalImages} pictures and metadata`);
     for (let i = 0; i < totalImages; i++) {
-        await saveImage(i);
+        await saveImage(i,'tool1/');
         buildJson(i);
         saveAllJson();
     }
     showSupport();
 }
 
-const getGeneratedJson = async () => {
+const getGeneratedJson = async (_path) => {
     try {
-        const filenames = await fs.readdir(JSON_PATH);
+        const filenames = await fs.readdir(_path);
         filenames.forEach(function (file) {
-            const _file = `${ASSETS_PATH}${file}`;
+            const _file = `${_path}${file}`;
             const _mime = mime.lookup(_file);
             if (_mime === 'application/json' && file !== '_metadata.json') {
                 generatedJsonList.push(file);
@@ -156,7 +157,7 @@ const cleanupMetadata = async () => {
 }
 
 const cleanMetadata = async () => {
-    await getGeneratedJson();
+    await getGeneratedJson(`${ASSETS_PATH}tool6/`);
     cleanupMetadata();
     showSupport();
 }
@@ -190,7 +191,7 @@ const updateImageLocationInJson = async () => {
 }
 
 const updateBaseUri = async () => {
-    await getGeneratedJson();
+    await getGeneratedJson(`${ASSETS_PATH}tool4/`);
     updateImageLocationInJson();
     showSupport();
 }
@@ -210,7 +211,7 @@ const generateFixedMedia = () => {
 
 const generateFromMetadataJson = () => {
     buildSetup();
-    const metadataJson = `${ASSETS_PATH}_metadata.json`;
+    const metadataJson = `${ASSETS_PATH}tool3/_metadata.json`;
     console.log(`Reading ${metadataJson}`);
     let rawdata = fs1.readFileSync(metadataJson);
     let data = JSON.parse(rawdata);
@@ -227,7 +228,7 @@ const generateFromMetadataJson = () => {
 const generateFromMetadataJsonAndLayers = async () => {
     buildSetup();
     initCanvas();
-    const metadataJson = `${ASSETS_PATH}_metadata.json`;
+    const metadataJson = `${ASSETS_PATH}tool5/_metadata.json`;
     console.log(`Reading ${metadataJson}`);
     console.log('');
     let rawdata = fs1.readFileSync(metadataJson);
@@ -240,7 +241,7 @@ const generateFromMetadataJsonAndLayers = async () => {
                 fileStack = [];
                 for (i = 0; i < element.attributes.length; i++) {
                     const attribute = element.attributes[i];
-                    let layer = `${LAYERS_PATH}${attribute.trait_type}/`;
+                    let layer = `${ASSETS_PATH}tool5/layers/${attribute.trait_type}/`;
                     let filename = attribute.value;
                     const filenames = await fs.readdir(layer);
                     filenames.forEach(function (file) {

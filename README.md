@@ -71,7 +71,7 @@ The config file is located in `/src/config.js`. This is where you configure the 
 
 Let's say you have some images, but don't have any metadata json files.
 
-Put your images in the `/assets/` folder.
+Put your images in the `/assets/tool1/` folder.
 
 Next you can setup the default metadata that will be used in your metadata json. 
 You can find this in the `config.js` file.
@@ -184,7 +184,7 @@ If you want to generate json files that are stored in the _metadata.json, use th
 npm run generate:fromMetadata
 ```
 
-Put the `_metadata.json` in the `/assets/` folder. The json files will be exported in the `/build/json/` folder.
+Put the `_metadata.json` in the `/assets/tool3/` folder. The json files will be exported in the `/build/json/` folder.
 
 So for example :
 
@@ -224,6 +224,8 @@ Once you have uploaded all your images to Pinata / IPFS , you need to update the
 
 Open the config file in `src/config.js`  and change the `baseUri` value. 
 
+Put your json files in the `/assets/tool4/` folder.
+
 Next, in your terminal type
 
 ```sh
@@ -232,7 +234,7 @@ npm run updateBaseUri
 
 ## Tool #5 - Reverse generate images from _metadata.json and layers
 
-This tool will generate your images by crossreferencing the `_metadata.json` and the source image in `/assets/layers/`.
+This tool will generate your images by crossreferencing the `/assets/tool5/_metadata.json` and the source image(s) in `/assets/tool5/layers/`.
 
 The images will be outputtted in `/build/images/`.
 
