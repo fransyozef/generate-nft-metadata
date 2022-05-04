@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+- Refactored to have all input in their respective tools folder in the `/assets/` folder.
+- Update readme
+
 ## 1.1.3
 - Fixed typo for `generate:fixedMedia`
 
