@@ -300,6 +300,8 @@ Then run the command in your terminal
 npm run cleanMetadata
 ```
 
+The new metadata will be in `/build/json/`.
+
 
 ## Tool #7 - Create _metadata.json from seperate json files.
 
