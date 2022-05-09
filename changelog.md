@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0
+- Added tool #7 : Generate _metadata.json
+- Update readme
+
 ## 1.2.0
 - Refactored to have all input in their respective tools folder in the `/assets/` folder.
 - Update readme
