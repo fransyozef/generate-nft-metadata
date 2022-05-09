@@ -284,6 +284,40 @@ const generateFromMetadataJsonAndLayers = async () => {
     showSupport();
 }
 
+const combinedMetadataJson = async () => {
+    buildSetup();
+    const jsonFilesPath = `${ASSETS_PATH}tool7/`;
+    const filenames = await fs.readdir(jsonFilesPath);
+    let payload = [];
+    filenames.forEach(function (file) {
+        if(file !== '_metadata.json') {
+            const _mime = mime.lookup(file);
+            if (_mime === 'application/json') {
+                console.log(`Found json file: ${file}`);
+                let _file = `${jsonFilesPath}${file}`;
+                let rawdata = fs1.readFileSync(_file);
+                let data = JSON.parse(rawdata);                
+                payload.push(data);
+            }            
+        }
+    });    
+
+    console.log(' ');
+    if(payload.length > 0) {
+        console.log('Ready to generate _metadata.json');
+        const metadataJson = `${JSON_PATH}_metadata.json`;
+        fs1.writeFileSync(
+            metadataJson,
+            JSON.stringify(payload, null, 2)
+        );
+        console.log(`Check in ${JSON_PATH}`);
+    } else {
+        console.log('No json files where found!!!!');
+    }
+
+    showSupport();
+}
+
 module.exports = {
     generate,
     saveImage,
@@ -292,5 +326,6 @@ module.exports = {
     generateFromMetadataJson,
     generateFromMetadataJsonAndLayers,
     cleanMetadata,
-    showSupport
+    showSupport,
+    combinedMetadataJson
 };
