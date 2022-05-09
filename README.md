@@ -32,6 +32,7 @@ Go check it out, maybe it can help you also.
     - [Tool 4 : Update the base uri](#tool-4---update-the-base-uri)
     - [Tool 5 : Reverse generate images from _metadata.json and layers](#tool-5---reverse-generate-images-from-_metadatajson-and-layers)
     - [Tool 6 : Cleanup metadata](#tool-6---cleanup-metadata)
+    - [Tool 7 : Generate _metadata.json](#tool-7---create-_metadatajson-from-seperate-json-files)
 
 
 
