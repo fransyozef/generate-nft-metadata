@@ -292,3 +292,15 @@ Then run the command in your terminal
 ```sh
 npm run cleanMetadata
 ```
+
+
+## Tool #7 - Create _metadata.json from seperate json files.
+
+This tool will create the _metadata.json from the seperate generated json files.
+Put your json files in `/assets/tool7/` folder and run the command
+
+```sh
+npm run generate:combinedMetadataJson
+```
+
+The `_metadata.json` will be generated in `/build/json/` folder
