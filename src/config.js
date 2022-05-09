@@ -24,7 +24,14 @@ const PROJECT_CONFIG = {
         width: 512,
         height: 512,
         smoothing: false,
-    }
+    },
+    removeMetaData : [
+        "edition",
+        "dna",
+        "date",
+        "compiler",
+        "author"
+    ]
 }
 
 module.exports = {

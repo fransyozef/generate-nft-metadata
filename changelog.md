@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.3.1
+- Added removeMetaData list for tool 6
+- Bug fix tool 6: reading from wrong path
+- Update readme
+
 ## 1.3.0
 - Added tool #7 : Generate _metadata.json
 - Update readme

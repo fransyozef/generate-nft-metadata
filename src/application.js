@@ -139,20 +139,20 @@ const getGeneratedJson = async (_path) => {
 
 const cleanupMetadata = async () => {
     generatedJsonList.forEach((file) => {
-        const filename = `${JSON_PATH}${file}`;
+        const filename = `${ASSETS_PATH}tool6/${file}`;
+        const exportFilename = `${JSON_PATH}${file}`;
         let rawdata = fs1.readFileSync(filename);
         let data = JSON.parse(rawdata);
-        const edition = data?.edition;
-        delete data?.edition;
-        delete data?.dna;
-        delete data?.date;
-        delete data?.compiler;
-        delete data?.author;
+        PROJECT_CONFIG.removeMetaData.forEach((metadata) => {
+             if(data[metadata]) {
+                 delete data[metadata];
+             }
+        });
         fs1.writeFileSync(
-            filename,
+            exportFilename,
             JSON.stringify(data, null, 2)
         );        
-        console.log(`Wrote new metadata in ${filename}`);
+        console.log(`Wrote new metadata in ${exportFilename}`);
     });
 }
 

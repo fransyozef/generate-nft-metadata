@@ -278,15 +278,21 @@ The HashLip generator creates metadata for example
 }
 ```
 
-You don't actually need all the keys. Tool 6 will delete these :
+You don't actually need all the keys. 
 
-- dna
-- edition
-- compiler
-- author
-- date
+Put all your metadata in the folder `/assets/tool6/` .
 
-Put all your metadata in the folder `/build/json/` .
+In `config.js` you can configure which keys you don't want :
+
+```js
+    removeMetaData : [
+        "edition",
+        "dna",
+        "date",
+        "compiler",
+        "author"
+    ]
+```
 
 Then run the command in your terminal
 
