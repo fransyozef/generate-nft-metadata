@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.3.2
+- Fixed Tool6 build failed when the /build folder is not there
+
 ## 1.3.1
 - Added removeMetaData list for tool 6
 - Bug fix tool 6: reading from wrong path

@@ -157,6 +157,7 @@ const cleanupMetadata = async () => {
 }
 
 const cleanMetadata = async () => {
+    buildSetup();
     await getGeneratedJson(`${ASSETS_PATH}tool6/`);
     cleanupMetadata();
     showSupport();
