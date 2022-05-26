@@ -125,18 +125,21 @@ const generate = async () => {
 }
 
 const getGeneratedJson = async (_path) => {
+    const generatedJsonList = [];
     try {
         const filenames = await fs.readdir(_path);
         filenames.forEach(function (file) {
             const _file = `${_path}${file}`;
             const _mime = mime.lookup(_file);
             if (_mime === 'application/json' && file !== '_metadata.json') {
-                generatedJsonList.push(file);
+                generatedJsonList.push(`${_path}${file}`);
                 console.log(`Found json: ${file}`);
             }
         });
+        return generatedJsonList;
     } catch (e) {
         console.log(e);
+        return null;
     }
 }
 
@@ -179,10 +182,9 @@ const showSupport = () => {
     `);
 }
 
-const updateImageLocationInJson = async () => {
-    generatedJsonList.forEach((file) => {
-        const filename = `${JSON_PATH}${file}`;
-        let rawdata = fs1.readFileSync(filename);
+const updateImageLocationInJson = async (files) => {
+    files.forEach((file) => {
+         let rawdata = fs1.readFileSync(file);
         let data = JSON.parse(rawdata);
         const _imageSplit = data.image.split('/');
         const _filename = _imageSplit.pop();
@@ -190,13 +192,33 @@ const updateImageLocationInJson = async () => {
         const baseUriCheck = baseUri.charAt(baseUri.length - 1);
         baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;
         data.image = `${baseUri}${_filename}`;
-        saveJson(data);
+        const exportfileName = getFilename(file);
+        if(exportfileName) {
+            saveJson(data , `${JSON_PATH}${exportfileName}`);
+        } else {
+            console.log('[ERROR] Could not create export filename!');
+        }
     });
 }
 
-const updateBaseUri = async () => {
-    await getGeneratedJson(`${ASSETS_PATH}tool4/`);
-    updateImageLocationInJson();
+const getFilename = (_filename) => {
+    if(!_filename) return null;
+    try {
+        const parts = _filename.split('/');
+        const filename = parts.pop();
+        return filename;
+    } catch (e) {
+        return _filename;
+    }
+}
+
+const tool4 = async () => {
+    const files = await getGeneratedJson(`${ASSETS_PATH}tool4/`);
+    if(files && files.length > 0) {
+        updateImageLocationInJson(files);
+    } else {
+        console.log('[ERROR] No files found!')
+    }
     showSupport();
 }
 
@@ -365,7 +387,7 @@ const importTraits = () => {
 
 module.exports = {
     generate,
-    updateBaseUri,
+    tool4,
     tool1,
     tool3,
     generateFromMetadataJsonAndLayers,

@@ -24,7 +24,7 @@
     "clean": "npm run clean:build && npm run clean:package && npm run clean:node_modules",
     "rebuild": "npm run clean:build && npm start",
     "reinstall": "npm run clean && npm install",
-    "updateBaseUri": "node utils/updateBaseUri.js",
+    "tool4": "node utils/tool4.js",
     "cleanMetadata": "node utils/cleanMetadata.js",
     "tool1": "npm run clean:build && node utils/tool1.js",
     "tool3": "npm run clean:build && node utils/tool3.js",
