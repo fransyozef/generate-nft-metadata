@@ -31,7 +31,7 @@
     "generate:fromImages": "npm run clean:build && node utils/generateFromImages.js",
     "tool5": "npm run clean:build && node utils/tool5.js",
     "tool7": "npm run clean:build && node utils/tool7.js",
-    "generate:importTraits": "npm run clean:build && node utils/importTraits.js"
+    "tool8": "npm run clean:build && node utils/tool8.js"
   },
   "author": "Fransjo Leihitu (fransyozef)",
   "license": "MIT",

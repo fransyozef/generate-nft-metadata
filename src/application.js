@@ -348,7 +348,7 @@ const tool7 = async () => {
     showSupport();
 }
 
-const importTraits = () => {
+const tool8 = () => {
     buildSetup();
     const importCSV = `${ASSETS_PATH}tool8/import.csv`;
     const csvData = [];
@@ -378,7 +378,7 @@ const importTraits = () => {
                             }
                         }
                         PROJECT_CONFIG.extraAttributes = attributes;
-                        buildJson(counter - 1, fileName);
+                        buildJson(counter - 1, null , `${JSON_PATH}${fileName}`);
                     }
                 } else {
                     console.log('[ERROR] You have headers but no any CSV data!!!!');
@@ -399,5 +399,5 @@ module.exports = {
     tool6,
     showSupport,
     tool7,
-    importTraits
+    tool8
 };
