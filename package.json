@@ -28,7 +28,7 @@
     "tool6": "node utils/tool6.js",
     "tool1": "npm run clean:build && node utils/tool1.js",
     "tool3": "npm run clean:build && node utils/tool3.js",
-    "generate:fromImages": "npm run clean:build && node utils/generateFromImages.js",
+    "tool2": "npm run clean:build && node utils/tool2.js",
     "tool5": "npm run clean:build && node utils/tool5.js",
     "tool7": "npm run clean:build && node utils/tool7.js",
     "tool8": "npm run clean:build && node utils/tool8.js"

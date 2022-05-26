@@ -85,10 +85,11 @@ const saveJson = (payload, _filename) => {
     );
 }
 
-const saveAllJson = () => {
+const saveAllJson = (_metadataList) => {
+    const __metadataList = _metadataList ? _metadataList : metadataList;
     fs1.writeFileSync(
         `${JSON_PATH}_metadata.json`,
-        JSON.stringify(metadataList, null, 2)
+        JSON.stringify(__metadataList, null, 2)
     );
 }
 const getSourceImages = async () => {
@@ -108,17 +109,16 @@ const getSourceImages = async () => {
     }
 }
 
-const generate = async () => {
+const tool1 = async () => {
     buildSetup();
     await getSourceImages();
     const totalImages = filesInput.length;
     console.log(`Generating ${totalImages} pictures and metadata`);
     for (let i = 0; i < totalImages; i++) {
-        const sourceFile = `${ASSETS_PATH}tool1/}${filesInput[i]}`;
-        console.log(sourceFile);
+        const sourceFile = `${ASSETS_PATH}tool1/${filesInput[i]}`;
         const destFile = `${IMAGES_PATH}${i + 1}.png`;
         await copyImage(sourceFile, destFile);
-        buildJson(i);
+        buildJson(i, null, `${JSON_PATH}${i + 1}.json`);
         saveAllJson();
     }
     showSupport();
@@ -226,7 +226,7 @@ const tool4 = async () => {
     showSupport();
 }
 
-const tool1 = () => {
+const tool2 = () => {
     buildSetup();
     const totalMetadata = PROJECT_CONFIG.fixedMedia.editions;
     console.log(`Generating ${totalMetadata} metadata with fixed media : ${PROJECT_CONFIG.fixedMedia.filename}`);
@@ -378,7 +378,7 @@ const tool8 = () => {
                             }
                         }
                         PROJECT_CONFIG.extraAttributes = attributes;
-                        buildJson(counter - 1, null , `${JSON_PATH}${fileName}`);
+                        buildJson(counter - 1, null, `${JSON_PATH}${fileName}`);
                     }
                 } else {
                     console.log('[ERROR] You have headers but no any CSV data!!!!');
@@ -391,7 +391,7 @@ const tool8 = () => {
 }
 
 module.exports = {
-    generate,
+    tool2,
     tool4,
     tool1,
     tool3,
