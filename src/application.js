@@ -211,7 +211,7 @@ const tool1 = () => {
     showSupport();
 }
 
-const generateFromMetadataJson = () => {
+const tool3 = () => {
     buildSetup();
     const metadataJson = `${ASSETS_PATH}tool3/_metadata.json`;
     console.log(`Reading ${metadataJson}`);
@@ -219,9 +219,10 @@ const generateFromMetadataJson = () => {
     let data = JSON.parse(rawdata);
     if (data && data.length > 0) {
         data.forEach((element) => {
-            // console.log(element);
-            console.log(`Exporting to ${element.edition}.json`);
-            saveJson(element);
+            const _filename = `${element.edition}.json`;
+            console.log(`Exporting to ${_filename}`);
+            const filename = `${JSON_PATH}${_filename}`;
+            saveJson(element , filename);
         });
     }
     showSupport();
@@ -366,7 +367,7 @@ module.exports = {
     generate,
     updateBaseUri,
     tool1,
-    generateFromMetadataJson,
+    tool3,
     generateFromMetadataJsonAndLayers,
     cleanMetadata,
     showSupport,

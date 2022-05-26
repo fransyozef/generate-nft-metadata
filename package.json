@@ -27,7 +27,7 @@
     "updateBaseUri": "node utils/updateBaseUri.js",
     "cleanMetadata": "node utils/cleanMetadata.js",
     "tool1": "npm run clean:build && node utils/tool1.js",
-    "generate:fromMetadata": "npm run clean:build && node utils/generateFromMetadataJson.js",
+    "tool3": "npm run clean:build && node utils/tool3.js",
     "generate:fromImages": "npm run clean:build && node utils/generateFromImages.js",
     "generate:fromMetadataJsonAndLayers": "npm run clean:build && node utils/generateFromMetadataJsonAndLayers.js",
     "generate:combinedMetadataJson": "npm run clean:build && node utils/combinedMetadataJson.js",
