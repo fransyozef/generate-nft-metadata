@@ -391,13 +391,13 @@ const tool8 = () => {
 }
 
 module.exports = {
-    tool2,
-    tool4,
     tool1,
+    tool2,
     tool3,
+    tool4,
     tool5,
-    tool6,
-    showSupport,
     tool7,
-    tool8
+    tool6,
+    tool8,
+    showSupport,
 };
