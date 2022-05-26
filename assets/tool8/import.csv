@@ -1,0 +1,7 @@
+filename|trait1|trait2|trait3
+1.json|test1|test2|test3
+2.json|test1|test2|
+3.json|test1||
+4.json||test2|
+10.json|||
+100.json|||test3

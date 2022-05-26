@@ -5,6 +5,7 @@ const { promises: fs } = require("fs");
 const mime = require('mime-types')
 const sha1 = require(`${basePath}/node_modules/sha1`);
 const { createCanvas, Image } = require(`${basePath}/node_modules/canvas`);
+const { parse } = require('csv-parse');
 const {
     ASSETS_PATH,
     BUILD_PATH,
@@ -36,9 +37,10 @@ const buildSetup = () => {
     fs1.mkdirSync(IMAGES_PATH);
 };
 
-const saveImage = async (index,_prePath) => {
-    const sourceFile = `${ASSETS_PATH}${_prePath}${filesInput[index]}`;
-    const destFile = `${IMAGES_PATH}${index + 1}.png`;
+const copyImage = async (sourceFile , destFile) => {
+    console.log(sourceFile , destFile);
+    // const sourceFile = `${ASSETS_PATH}${_prePath}${filesInput[index]}`;
+    // const destFile = `${IMAGES_PATH}${index + 1}.png`;
     try {
         await fs.copyFile(sourceFile, destFile);
         const result = await fs.readFile(destFile);
@@ -48,7 +50,7 @@ const saveImage = async (index,_prePath) => {
     }
 }
 
-const buildJson = (index, _media) => {
+const buildJson = (index, _media, _jsonFilename) => {
     const dna = '';
     const _attributes = [];
     let attributes = [];
@@ -72,17 +74,15 @@ const buildJson = (index, _media) => {
         "attributes": attributes
     }
     const payload = { ...tempData, ...PROJECT_CONFIG.extraMetadata };
-    saveJson(payload);
+    saveJson(payload,_jsonFilename);
     metadataList.push(payload);
 }
 
-const saveJson = (payload) => {
-    let filename = `${JSON_PATH}${payload.edition}.json`;
+const saveJson = (payload,_filename) => {
     fs1.writeFileSync(
-        filename,
+        _filename,
         JSON.stringify(payload, null, 2)
     );
-    // console.log(`[${payload.edition}] metadata saved at ${filename}`);
 }
 
 const saveAllJson = () => {
@@ -114,7 +114,10 @@ const generate = async () => {
     const totalImages = filesInput.length;
     console.log(`Generating ${totalImages} pictures and metadata`);
     for (let i = 0; i < totalImages; i++) {
-        await saveImage(i,'tool1/');
+        const sourceFile = `${ASSETS_PATH}tool1/}${filesInput[i]}`;
+        console.log(sourceFile);
+        const destFile = `${IMAGES_PATH}${i + 1}.png`;
+        await copyImage(sourceFile, destFile);
         buildJson(i);
         saveAllJson();
     }
@@ -144,14 +147,14 @@ const cleanupMetadata = async () => {
         let rawdata = fs1.readFileSync(filename);
         let data = JSON.parse(rawdata);
         PROJECT_CONFIG.removeMetaData.forEach((metadata) => {
-             if(data[metadata]) {
-                 delete data[metadata];
-             }
+            if (data[metadata]) {
+                delete data[metadata];
+            }
         });
         fs1.writeFileSync(
             exportFilename,
             JSON.stringify(data, null, 2)
-        );        
+        );
         console.log(`Wrote new metadata in ${exportFilename}`);
     });
 }
@@ -197,14 +200,12 @@ const updateBaseUri = async () => {
     showSupport();
 }
 
-const generateFixedMedia = () => {
+const tool1 = () => {
     buildSetup();
-    // await getSourceImages();
     const totalMetadata = PROJECT_CONFIG.fixedMedia.editions;
     console.log(`Generating ${totalMetadata} metadata with fixed media : ${PROJECT_CONFIG.fixedMedia.filename}`);
     for (let i = 0; i < totalMetadata; i++) {
-        // await saveImage(i);
-        buildJson(i, PROJECT_CONFIG.fixedMedia.filename);
+        buildJson(i, PROJECT_CONFIG.fixedMedia.filename , `${JSON_PATH}${i+1}.json`);
         // saveAllJson();
     }
     showSupport();
@@ -291,20 +292,20 @@ const combinedMetadataJson = async () => {
     const filenames = await fs.readdir(jsonFilesPath);
     let payload = [];
     filenames.forEach(function (file) {
-        if(file !== '_metadata.json') {
+        if (file !== '_metadata.json') {
             const _mime = mime.lookup(file);
             if (_mime === 'application/json') {
                 console.log(`Found json file: ${file}`);
                 let _file = `${jsonFilesPath}${file}`;
                 let rawdata = fs1.readFileSync(_file);
-                let data = JSON.parse(rawdata);                
+                let data = JSON.parse(rawdata);
                 payload.push(data);
-            }            
+            }
         }
-    });    
+    });
 
     console.log(' ');
-    if(payload.length > 0) {
+    if (payload.length > 0) {
         console.log('Ready to generate _metadata.json');
         const metadataJson = `${JSON_PATH}_metadata.json`;
         fs1.writeFileSync(
@@ -319,14 +320,56 @@ const combinedMetadataJson = async () => {
     showSupport();
 }
 
+const importTraits = () => {
+    buildSetup();
+    const importCSV = `${ASSETS_PATH}tool8/import.csv`;
+    const csvData = [];
+    fs1.createReadStream(importCSV)
+        .pipe(parse({ delimiter: '|' }))
+        .on('data', function (csvrow) {
+            csvData.push(csvrow);
+        })
+        .on('end', function () {
+            if (csvData.length > 0) {
+                const columnNames = csvData.shift();
+                columnNames.shift();
+                if(csvData.length > 0) {
+                    for (let q = 0; q < csvData.length; q++) {
+                        const line = csvData[q];
+                        const attributes = [];
+                        const fileName = line.shift();
+                        const counterParts = fileName.split('.json');
+                        const counter = counterParts[0];
+                        for (let i = 0; i < line.length; i++) {
+                            if (line[i] != '') {
+                                const attribute = {
+                                    "trait_type": `${columnNames[i]}`,
+                                    "value": `${line[i]}`
+                                };
+                                attributes.push(attribute);
+                            }
+                        }
+                        PROJECT_CONFIG.extraAttributes = attributes;
+                        buildJson(counter-1, fileName);
+                    }
+                } else {
+                    console.log('[ERROR] You have headers but no any CSV data!!!!');
+                }
+            } else {
+                console.log('[ERROR] Could not find any CSV data!!!!');
+            }
+            showSupport();
+        });
+}
+
 module.exports = {
     generate,
-    saveImage,
     updateBaseUri,
-    generateFixedMedia,
+    tool1,
     generateFromMetadataJson,
     generateFromMetadataJsonAndLayers,
     cleanMetadata,
     showSupport,
-    combinedMetadataJson
+    combinedMetadataJson,
+    importTraits
 };

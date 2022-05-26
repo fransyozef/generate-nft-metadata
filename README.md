@@ -101,7 +101,7 @@ You can configure the attributes and extra metadata in the `config.js` file :
 then run the command 
 
 ```sh
-npm run generate:fromImages
+npm run tool1
 ```
 
 this will generate the json files in `/build/json` and rename & copy your source images files to `/build/images/` folder.
