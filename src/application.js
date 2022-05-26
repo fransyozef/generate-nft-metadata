@@ -37,8 +37,8 @@ const buildSetup = () => {
     fs1.mkdirSync(IMAGES_PATH);
 };
 
-const copyImage = async (sourceFile , destFile) => {
-    console.log(sourceFile , destFile);
+const copyImage = async (sourceFile, destFile) => {
+    console.log(sourceFile, destFile);
     // const sourceFile = `${ASSETS_PATH}${_prePath}${filesInput[index]}`;
     // const destFile = `${IMAGES_PATH}${index + 1}.png`;
     try {
@@ -74,11 +74,11 @@ const buildJson = (index, _media, _jsonFilename) => {
         "attributes": attributes
     }
     const payload = { ...tempData, ...PROJECT_CONFIG.extraMetadata };
-    saveJson(payload,_jsonFilename);
+    saveJson(payload, _jsonFilename);
     metadataList.push(payload);
 }
 
-const saveJson = (payload,_filename) => {
+const saveJson = (payload, _filename) => {
     fs1.writeFileSync(
         _filename,
         JSON.stringify(payload, null, 2)
@@ -143,29 +143,33 @@ const getGeneratedJson = async (_path) => {
     }
 }
 
-const cleanupMetadata = async () => {
-    generatedJsonList.forEach((file) => {
-        const filename = `${ASSETS_PATH}tool6/${file}`;
-        const exportFilename = `${JSON_PATH}${file}`;
-        let rawdata = fs1.readFileSync(filename);
-        let data = JSON.parse(rawdata);
-        PROJECT_CONFIG.removeMetaData.forEach((metadata) => {
-            if (data[metadata]) {
-                delete data[metadata];
-            }
-        });
-        fs1.writeFileSync(
-            exportFilename,
-            JSON.stringify(data, null, 2)
-        );
-        console.log(`Wrote new metadata in ${exportFilename}`);
+const cleanupMetadata = async (_files) => {
+    _files.forEach((file) => {
+        const _exportFilename = getFilename(file);
+        if (_exportFilename) {
+            const exportFilename = `${JSON_PATH}${_exportFilename}`;
+            let rawdata = fs1.readFileSync(file);
+            let data = JSON.parse(rawdata);
+            PROJECT_CONFIG.removeMetaData.forEach((metadata) => {
+                if (data[metadata]) {
+                    delete data[metadata];
+                }
+            });
+            fs1.writeFileSync(
+                exportFilename,
+                JSON.stringify(data, null, 2)
+            );
+            console.log(`Wrote new metadata in ${exportFilename}`);
+        } else {
+            console.log('[ERROR] Could not get filename!');
+        }
     });
 }
 
-const cleanMetadata = async () => {
+const tool6 = async () => {
     buildSetup();
-    await getGeneratedJson(`${ASSETS_PATH}tool6/`);
-    cleanupMetadata();
+    const files = await getGeneratedJson(`${ASSETS_PATH}tool6/`);
+    cleanupMetadata(files);
     showSupport();
 }
 
@@ -184,7 +188,7 @@ const showSupport = () => {
 
 const updateImageLocationInJson = async (files) => {
     files.forEach((file) => {
-         let rawdata = fs1.readFileSync(file);
+        let rawdata = fs1.readFileSync(file);
         let data = JSON.parse(rawdata);
         const _imageSplit = data.image.split('/');
         const _filename = _imageSplit.pop();
@@ -193,8 +197,8 @@ const updateImageLocationInJson = async (files) => {
         baseUri = baseUriCheck === '/' ? baseUri : `${baseUri}/`;
         data.image = `${baseUri}${_filename}`;
         const exportfileName = getFilename(file);
-        if(exportfileName) {
-            saveJson(data , `${JSON_PATH}${exportfileName}`);
+        if (exportfileName) {
+            saveJson(data, `${JSON_PATH}${exportfileName}`);
         } else {
             console.log('[ERROR] Could not create export filename!');
         }
@@ -202,7 +206,7 @@ const updateImageLocationInJson = async (files) => {
 }
 
 const getFilename = (_filename) => {
-    if(!_filename) return null;
+    if (!_filename) return null;
     try {
         const parts = _filename.split('/');
         const filename = parts.pop();
@@ -214,7 +218,7 @@ const getFilename = (_filename) => {
 
 const tool4 = async () => {
     const files = await getGeneratedJson(`${ASSETS_PATH}tool4/`);
-    if(files && files.length > 0) {
+    if (files && files.length > 0) {
         updateImageLocationInJson(files);
     } else {
         console.log('[ERROR] No files found!')
@@ -227,7 +231,7 @@ const tool1 = () => {
     const totalMetadata = PROJECT_CONFIG.fixedMedia.editions;
     console.log(`Generating ${totalMetadata} metadata with fixed media : ${PROJECT_CONFIG.fixedMedia.filename}`);
     for (let i = 0; i < totalMetadata; i++) {
-        buildJson(i, PROJECT_CONFIG.fixedMedia.filename , `${JSON_PATH}${i+1}.json`);
+        buildJson(i, PROJECT_CONFIG.fixedMedia.filename, `${JSON_PATH}${i + 1}.json`);
         // saveAllJson();
     }
     showSupport();
@@ -244,7 +248,7 @@ const tool3 = () => {
             const _filename = `${element.edition}.json`;
             console.log(`Exporting to ${_filename}`);
             const filename = `${JSON_PATH}${_filename}`;
-            saveJson(element , filename);
+            saveJson(element, filename);
         });
     }
     showSupport();
@@ -294,7 +298,7 @@ const tool5 = async () => {
                     console.log(`metadata saved`);
                     console.log(` `);
                     const exportJson = `${JSON_PATH}${element.edition}.json`;
-                    saveJson(element , exportJson);
+                    saveJson(element, exportJson);
                 }
 
                 let filename = `${JSON_PATH}_metadata.json`;
@@ -357,7 +361,7 @@ const importTraits = () => {
             if (csvData.length > 0) {
                 const columnNames = csvData.shift();
                 columnNames.shift();
-                if(csvData.length > 0) {
+                if (csvData.length > 0) {
                     for (let q = 0; q < csvData.length; q++) {
                         const line = csvData[q];
                         const attributes = [];
@@ -374,7 +378,7 @@ const importTraits = () => {
                             }
                         }
                         PROJECT_CONFIG.extraAttributes = attributes;
-                        buildJson(counter-1, fileName);
+                        buildJson(counter - 1, fileName);
                     }
                 } else {
                     console.log('[ERROR] You have headers but no any CSV data!!!!');
@@ -392,7 +396,7 @@ module.exports = {
     tool1,
     tool3,
     tool5,
-    cleanMetadata,
+    tool6,
     showSupport,
     combinedMetadataJson,
     importTraits

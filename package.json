@@ -25,7 +25,7 @@
     "rebuild": "npm run clean:build && npm start",
     "reinstall": "npm run clean && npm install",
     "tool4": "node utils/tool4.js",
-    "cleanMetadata": "node utils/cleanMetadata.js",
+    "tool6": "node utils/tool6.js",
     "tool1": "npm run clean:build && node utils/tool1.js",
     "tool3": "npm run clean:build && node utils/tool3.js",
     "generate:fromImages": "npm run clean:build && node utils/generateFromImages.js",
