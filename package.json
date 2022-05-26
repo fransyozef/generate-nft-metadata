@@ -30,7 +30,7 @@
     "tool3": "npm run clean:build && node utils/tool3.js",
     "generate:fromImages": "npm run clean:build && node utils/generateFromImages.js",
     "tool5": "npm run clean:build && node utils/tool5.js",
-    "generate:combinedMetadataJson": "npm run clean:build && node utils/combinedMetadataJson.js",
+    "tool7": "npm run clean:build && node utils/tool7.js",
     "generate:importTraits": "npm run clean:build && node utils/importTraits.js"
   },
   "author": "Fransjo Leihitu (fransyozef)",

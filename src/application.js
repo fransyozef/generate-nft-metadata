@@ -314,7 +314,7 @@ const tool5 = async () => {
     showSupport();
 }
 
-const combinedMetadataJson = async () => {
+const tool7 = async () => {
     buildSetup();
     const jsonFilesPath = `${ASSETS_PATH}tool7/`;
     const filenames = await fs.readdir(jsonFilesPath);
@@ -398,6 +398,6 @@ module.exports = {
     tool5,
     tool6,
     showSupport,
-    combinedMetadataJson,
+    tool7,
     importTraits
 };
