@@ -232,7 +232,7 @@ const tool2 = () => {
     console.log(`Generating ${totalMetadata} metadata with fixed media : ${PROJECT_CONFIG.fixedMedia.filename}`);
     for (let i = 0; i < totalMetadata; i++) {
         buildJson(i, PROJECT_CONFIG.fixedMedia.filename, `${JSON_PATH}${i + 1}.json`);
-        // saveAllJson();
+        saveAllJson();
     }
     showSupport();
 }
