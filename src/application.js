@@ -217,6 +217,7 @@ const getFilename = (_filename) => {
 }
 
 const tool4 = async () => {
+    buildSetup();
     const files = await getGeneratedJson(`${ASSETS_PATH}tool4/`);
     if (files && files.length > 0) {
         updateImageLocationInJson(files);
