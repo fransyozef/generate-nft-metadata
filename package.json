@@ -29,7 +29,7 @@
     "tool1": "npm run clean:build && node utils/tool1.js",
     "tool3": "npm run clean:build && node utils/tool3.js",
     "generate:fromImages": "npm run clean:build && node utils/generateFromImages.js",
-    "generate:fromMetadataJsonAndLayers": "npm run clean:build && node utils/generateFromMetadataJsonAndLayers.js",
+    "tool5": "npm run clean:build && node utils/tool5.js",
     "generate:combinedMetadataJson": "npm run clean:build && node utils/combinedMetadataJson.js",
     "generate:importTraits": "npm run clean:build && node utils/importTraits.js"
   },

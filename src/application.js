@@ -250,7 +250,7 @@ const tool3 = () => {
     showSupport();
 }
 
-const generateFromMetadataJsonAndLayers = async () => {
+const tool5 = async () => {
     buildSetup();
     initCanvas();
     const metadataJson = `${ASSETS_PATH}tool5/_metadata.json`;
@@ -293,7 +293,8 @@ const generateFromMetadataJsonAndLayers = async () => {
                     console.log(`png saved at ${filename}`);
                     console.log(`metadata saved`);
                     console.log(` `);
-                    saveJson(element);
+                    const exportJson = `${JSON_PATH}${element.edition}.json`;
+                    saveJson(element , exportJson);
                 }
 
                 let filename = `${JSON_PATH}_metadata.json`;
@@ -390,7 +391,7 @@ module.exports = {
     tool4,
     tool1,
     tool3,
-    generateFromMetadataJsonAndLayers,
+    tool5,
     cleanMetadata,
     showSupport,
     combinedMetadataJson,
